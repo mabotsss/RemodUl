@@ -46,7 +46,7 @@ if not Redis("PM_TEXT"):
 
 {UND}
 
-{warn}/{twarn} {PRNGT}"""
+{PRNGT}"""
 else:
     UNAPPROVED_MSG = (
         """
@@ -59,7 +59,7 @@ else:
 
 {UND}
 
-{warn}/{twarn} {PRNGT}"""
+{PRNGT}"""
     )
 
 UNS = get_string("pmperm_2")
@@ -163,6 +163,7 @@ if sett == "True" and sett != "False":
                             warn=wrn,
                             twarn=WARNS,
                             UND=UND,
+                            PRNGT=PRNGT,
                             name=name,
                             fullname=fullname,
                             username=username,
@@ -178,6 +179,7 @@ if sett == "True" and sett != "False":
                             warn=wrn,
                             twarn=WARNS,
                             UND=UND,
+                            PRNGT=PRNGT,
                             name=name,
                             fullname=fullname,
                             username=username,
@@ -199,6 +201,7 @@ if sett == "True" and sett != "False":
                             warn=wrn,
                             twarn=WARNS,
                             UND=UND,
+                            PRNGT=PRNGT,
                             name=name,
                             fullname=fullname,
                             username=username,
@@ -214,6 +217,7 @@ if sett == "True" and sett != "False":
                             warn=wrn,
                             twarn=WARNS,
                             UND=UND,
+                            PRNGT=PRNGT,
                             name=name,
                             fullname=fullname,
                             username=username,
@@ -234,6 +238,7 @@ if sett == "True" and sett != "False":
                         warn=wrn,
                         twarn=WARNS,
                         UND=UND,
+                        PRNGT=PRNGT,
                         name=name,
                         fullname=fullname,
                         username=username,
@@ -249,6 +254,7 @@ if sett == "True" and sett != "False":
                         warn=wrn,
                         twarn=WARNS,
                         UND=UND,
+                        PRNGT=PRNGT,
                         name=name,
                         fullname=fullname,
                         username=username,
