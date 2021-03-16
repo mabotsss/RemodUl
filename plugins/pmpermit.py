@@ -46,7 +46,7 @@ if not Redis("PM_TEXT"):
 
 {UND}
 
-{PRNGT}"""
+{warn}/{twarn} {PRNGT}"""
 else:
     UNAPPROVED_MSG = (
         """
@@ -59,7 +59,7 @@ else:
 
 {UND}
 
-{PRNGT}"""
+{warn}/{twarn} {PRNGT}"""
     )
 
 UNS = get_string("pmperm_2")
