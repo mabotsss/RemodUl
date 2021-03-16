@@ -38,6 +38,7 @@ LASTMSG = {}
 #    PMPIC = "https://telegra.ph/file/94f6a4aeb21ce2d58dd41.jpg"
 
 UND = get_string("pmperm_1")
+PRNGT = get_string("pmperm_4")
 
 if not Redis("PM_TEXT"):
     UNAPPROVED_MSG = """
@@ -45,7 +46,7 @@ if not Redis("PM_TEXT"):
 
 {UND}
 
-You have {warn}/{twarn} warnings!"""
+{PRNGT}"""
 else:
     UNAPPROVED_MSG = (
         """
@@ -58,7 +59,7 @@ else:
 
 {UND}
 
-You have {warn}/{twarn} warnings!"""
+{PRNGT}"""
     )
 
 UNS = get_string("pmperm_2")
