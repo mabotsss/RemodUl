@@ -260,7 +260,10 @@ def list_files(http):
     x = drive.files().get(fileId="").execute()
     files = {}
     for m in x["items"]:
-        files.update({f"{m['title']}": f"{m['webContentLink']}"})
+        try:
+            files.update({f"{m['title']}": f"{m['webContentLink']}"})
+        except KeyError:
+            pass
     lists = f"**Total files found in Gdrive:** `{len(files.keys())}`\n\n"
     for l in files:
         lists += f"• [{l}]({files[l]})\n"
@@ -460,9 +463,9 @@ def un_plug(shortname):
             try:
                 del LOADED[shortname]
                 del LIST[shortname]
-            except KeyError:
+                ADDONS.remove(shortname)
+            except:
                 pass
-            ADDONS.remove(shortname)
 
         except BaseException:
             name = f"addons.{shortname}"
@@ -474,9 +477,9 @@ def un_plug(shortname):
                     try:
                         del LOADED[shortname]
                         del LIST[shortname]
+                        ADDONS.remove(shortname)
                     except KeyError:
                         pass
-                    ADDONS.remove(shortname)
     except BaseException:
         raise ValueError
 
