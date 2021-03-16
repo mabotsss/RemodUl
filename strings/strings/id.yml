@@ -192,4 +192,4 @@ wrd_3: "**Kata** - `{}`\n\n**Antonim** - \n"
 # assisant
 ast_1: "Pilih API yang ingin Anda setel."
 ast_2: "**remove.bg API**\nMasukkan API key Anda dari remove.bg.\n\nGunakan /cancel untuk membatalkan."
-ast_3: "Woii {}. Silakan telusuri opsi"
+ast_3: "Hii {}. Silakan telusuri opsi"

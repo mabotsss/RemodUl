@@ -32,10 +32,10 @@ from . import *
 # ========================= CONSTANTS =============================
 COUNT_PM = {}
 LASTMSG = {}
-if Redis("PMPIC"):
-    PMPIC = Redis("PMPIC")
-else:
-    PMPIC = "https://telegra.ph/file/94f6a4aeb21ce2d58dd41.jpg"
+#if Redis("PMPIC"):
+#    PMPIC = Redis("PMPIC")
+#else:
+#    PMPIC = "https://telegra.ph/file/94f6a4aeb21ce2d58dd41.jpg"
 
 UND = get_string("pmperm_1")
 
@@ -153,9 +153,10 @@ if sett == "True" and sett != "False":
                         user.id, search=UNS
                     ):
                         await message.delete()
-                    await event.client.send_file(
+                    if Redis("PMPIC"):
+                      await event.client.send_file(
                         user.id,
-                        PMPIC,
+                        Redis("PMPIC"),
                         caption=UNAPPROVED_MSG.format(
                             ON=OWNER_NAME,
                             warn=wrn,
@@ -167,15 +168,31 @@ if sett == "True" and sett != "False":
                             count=count,
                             mention=mention,
                         ),
-                    )
+                      )
+                    else:
+                      await event.client.send_message(
+                        user.id,
+                        UNAPPROVED_MSG.format(
+                            ON=OWNER_NAME,
+                            warn=wrn,
+                            twarn=WARNS,
+                            UND=UND,
+                            name=name,
+                            fullname=fullname,
+                            username=username,
+                            count=count,
+                            mention=mention,
+                        ),
+                      )                      
                 elif event.text == prevmsg:
                     async for message in event.client.iter_messages(
                         user.id, search=UND
                     ):
                         await message.delete()
-                    await event.client.send_file(
+                    if Redis("PMPIC"):
+                      await event.client.send_file(
                         user.id,
-                        PMPIC,
+                        Redis("PMPIC"),
                         caption=UNAPPROVED_MSG.format(
                             ON=OWNER_NAME,
                             warn=wrn,
@@ -187,14 +204,30 @@ if sett == "True" and sett != "False":
                             count=count,
                             mention=mention,
                         ),
-                    )
+                      )
+                    else:
+                      await event.client.send_message(
+                        user.id,
+                        UNAPPROVED_MSG.format(
+                            ON=OWNER_NAME,
+                            warn=wrn,
+                            twarn=WARNS,
+                            UND=UND,
+                            name=name,
+                            fullname=fullname,
+                            username=username,
+                            count=count,
+                            mention=mention,
+                        ),
+                      )
                 LASTMSG.update({user.id: event.text})
             else:
                 async for message in event.client.iter_messages(user.id, search=UND):
                     await message.delete()
-                await event.client.send_file(
+                if Redis("PMPIC"):
+                  await event.client.send_file(
                     user.id,
-                    PMPIC,
+                    Redis("PMPIC"),
                     caption=UNAPPROVED_MSG.format(
                         ON=OWNER_NAME,
                         warn=wrn,
@@ -206,7 +239,22 @@ if sett == "True" and sett != "False":
                         count=count,
                         mention=mention,
                     ),
-                )
+                  )
+                else:
+                  await event.client.send_message(
+                    user.id,
+                    caption=UNAPPROVED_MSG.format(
+                        ON=OWNER_NAME,
+                        warn=wrn,
+                        twarn=WARNS,
+                        UND=UND,
+                        name=name,
+                        fullname=fullname,
+                        username=username,
+                        count=count,
+                        mention=mention,
+                    ),
+                  )
                 LASTMSG.update({user.id: event.text})
             if user.id not in COUNT_PM:
                 COUNT_PM.update({user.id: 1})
