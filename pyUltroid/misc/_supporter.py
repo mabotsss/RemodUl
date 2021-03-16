@@ -23,9 +23,7 @@ from ..dB.database import Var
 from ..dB.core import *
 from pathlib import Path
 from sys import *
-
-
-CMD_HELP = {}
+from . import CMD_HELP
 
 ALIVE_NAME = ultroid_bot.me.first_name
 BOTLOG = Var.LOG_CHANNEL

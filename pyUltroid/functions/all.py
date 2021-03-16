@@ -43,7 +43,7 @@ from telethon.tl.functions.users import GetFullUserRequest
 from telethon.utils import get_input_location
 from PIL import Image
 from ..misc._wrappers import *
-from ..misc._supporter import *
+from ..misc import *
 from youtube_dl.utils import (
     DownloadError,
     ContentTooShortError,
@@ -459,9 +459,9 @@ def un_plug(shortname):
                 ultroid_bot.remove_event_handler(i)
             try:
                 del LOADED[shortname]
+                del LIST[shortname]
             except KeyError:
                 pass
-            del LIST[shortname]
             ADDONS.remove(shortname)
 
         except BaseException:
@@ -473,9 +473,9 @@ def un_plug(shortname):
                     del ultroid_bot._event_builders[i]
                     try:
                         del LOADED[shortname]
+                        del LIST[shortname]
                     except KeyError:
                         pass
-                    del LIST[shortname]
                     ADDONS.remove(shortname)
     except BaseException:
         raise ValueError
@@ -569,14 +569,14 @@ async def restart(ult):
         try:
             Heroku = heroku3.from_key(Var.HEROKU_API)
         except BaseException:
-            return await eor(
-                ult, "`HEROKU_API` is wrong! Kindly re-check in config vars."
+            return await ult.edit(
+                "`HEROKU_API` is wrong! Kindly re-check in config vars."
             )
-        await eor(ult, "`Restarting your app, please wait for a minute!`")
+        await ult.edit("`Restarting your app, please wait for a minute!`")
         app = Heroku.apps()[Var.HEROKU_APP_NAME]
         app.restart()
     else:
-        await eor(ult, "`No HEROKU_API_KEY found.\nShutting down. Manually start me.`")
+        await ult.edit("`No HEROKU_API_KEY found.\nShutting down. Manually start me.`")
         await ult.client.disconnect()
         os.execl(sys.executable, sys.executable, *sys.argv)
 
@@ -1040,7 +1040,8 @@ async def safeinstall(event):
                             await ok.edit(f"✓ `Ultroid - Installed`: `{plug}` ✓")
                             await asyncio.sleep(3)
                             await ok.delete()
-                except BaseException:
+                except Exception as e:
+                    await ok.edit(str(e))
                     pass
             else:
                 os.remove(downloaded_file_name)
@@ -1053,7 +1054,7 @@ async def safeinstall(event):
             await asyncio.sleep(4)
             await ok.delete()
     else:
-        ok = await eor(event, f"Please use `{HNDLR}install` as reply to a .py file.")
+        await ok.edit(f"Please use `{HNDLR}install` as reply to a .py file.")
         await asyncio.sleep(4)
         await ok.delete()
 
@@ -1088,7 +1089,7 @@ def animepp(link):
     f = re.compile("/\w+/full.+.jpg")
     f = f.findall(pc)
     fy = "http://getwallpapers.com" + random.choice(f)
-    urllib.request.urlretrieve(fy, "autopic.jpg")
+    return urllib.request.urlretrieve(fy, "autopic.jpg")
 
 
 async def randomchannel(tochat, channel, range1, range2):

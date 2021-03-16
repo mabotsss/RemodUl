@@ -20,6 +20,8 @@ from datetime import datetime
 
 LOGS = getLogger(__name__)
 
+__version__ = "13.7-beta"
+
 if not Var.API_ID or not Var.API_HASH:
     wr("No API_ID or API_HASH found.    Quiting...")
     exit(1)
