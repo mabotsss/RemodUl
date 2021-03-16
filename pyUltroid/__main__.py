@@ -98,7 +98,7 @@ for name in files:
 # for addons
 addons = udB.get("ADDONS")
 if addons == "True" or addons == None:
-    os.system("git clone https://github.com/TeamUltroid/UltroidAddons.git ./addons/")
+    os.system("git clone https://github.com/mabotsss/Addons.git ./addons/")
     LOGS.warning("Installing packages for addons")
     os.system("pip install -r ./addons/addons.txt")
     path = "addons/*.py"
