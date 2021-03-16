@@ -243,7 +243,7 @@ if sett == "True" and sett != "False":
                 else:
                   await event.client.send_message(
                     user.id,
-                    caption=UNAPPROVED_MSG.format(
+                    UNAPPROVED_MSG.format(
                         ON=OWNER_NAME,
                         warn=wrn,
                         twarn=WARNS,
